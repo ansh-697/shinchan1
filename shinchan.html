@@ -1,137 +1,98 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Shinchan's Birthday</title>
+    <title>Happy Birthday Shinchan!</title>
     <style>
       body {
-        background: #4a148c;
-        background-image: url("confetti.png");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        animation: background-animation 10s linear infinite;
-        font-family: 'Roboto', sans-serif;
-        color: #fff;
-      }
-      @keyframes background-animation {
-        0% {
-          background-color: #4a148c;
-          border-radius: 0%;
-        }
-        25% {
-          background-color: #8e24aa;
-          border-radius: 50% 0% 50% 0%;
-        }
-        50% {
-          background-color: #ba68c8;
-          border-radius: 0% 50% 0% 50%;
-        }
-        75% {
-          background-color: #8e24aa;
-          border-radius: 50% 0% 50% 0%;
-        }
-        100% {
-          background-color: #4a148c;
-          border-radius: 0%;
-        }
+        background-color: #FFF9C4;
+        text-align: center;
+        font-family: Arial, sans-serif;
       }
       h1 {
-        font-size: 50px;
-        text-align: center;
-        margin-top: 100px;
-        font-weight: 700;
-        text-shadow: 1px 1px #fff, 2px 2px #777;
+        margin-top: 50px;
       }
-      .shinchan {
-        position: absolute;
-        top: 200px;
-        left: 0;
-        animation: shinchan-movement 4s linear infinite;
+      #birthday-girl {
+        font-size: 32px;
+        font-weight: bold;
+        margin-top: 20px;
       }
-      @keyframes shinchan-movement {
+      #shinchan {
+        margin-top: 50px;
+        position: relative;
+        animation-name: bounce;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+      @keyframes bounce {
         0% {
-          left: 0;
+          transform: translateX(-10%) translateY(0%);
         }
         50% {
-          transform: scaleX(-1);
+          transform: translateX(-10%) translateY(-50%);
         }
         100% {
-          left: calc(100% - 100px);
+          transform: translateX(-10%) translateY(0%);
         }
       }
-      #speed-up-btn, #reset-btn {
-        margin-top: 10px;
-        background-color: #ff6f00;
-        color: #fff;
+      #controls {
+        margin-top: 50px;
+      }
+      button {
+        background-color: #FF5722;
+        color: #FFFFFF;
         border: none;
-        padding: 10px 20px;
         border-radius: 5px;
-        cursor: pointer;
-        font-size: 20px;
-        font-weight: 500;
-        box-shadow: 2px 2px #666;
-      }
-      #speed-up-btn:hover, #reset-btn:hover {
-        background-color: #ff8f00;
-      }
-      #play-btn, #pause-btn, #stop-btn {
-        background-color: #ff6f00;
-        color: #fff;
-        border: none;
         padding: 10px 20px;
-        border-radius: 5px;
+        font-size: 16px;
         cursor: pointer;
-        font-size: 20px;
-        font-weight: 500;
-        box-shadow: 2px 2px #666;
+        margin: 0px 10px;
       }
-      #play-btn:hover, #pause-btn:hover, #stop-btn:hover {
-        background-color: #ff8f00;
-      }
-</style>
-<script>
-   
-  var shinchan = document.querySelector('.shinchan');
-  var speed = 1;
-  var music = document.getElementById('bg-music');
-
-  function speedUp() {
-    speed += 0.5;
-    shinchan.style.animationDuration = `${4/speed}s`;
-  }
-
-  function resetSpeed() {
-    speed = 1;
-    shinchan.style.animationDuration = '4s';
-  }
-
-  function playMusic() {
-    music.play();
-  }
-
-  function pauseMusic() {
-    music.pause();
-  }
-
-  function stopMusic() {
-    music.pause();
-    music.currentTime = 0;
-  }
-</script>
-<body>
-    <h1>Happy Birthday Shinchan!</h1>
-    <audio id="bg-music" src="bday-song.mp3" autoplay loop></audio>
-    <div class="shinchan">
+    </style>
+  </head>
+  <body>
+    <h1>Happy Birthday!</h1>
+    <div id="birthday-girl">To Shivani </div>
+    <div id="shinchan">
       <img src="sing-crayon-shin-chan.gif" alt="Shinchan Image">
     </div>
-    <div>
+    <div id="controls">
       <button id="speed-up-btn" onclick="speedUp()">Speed Up</button>
       <button id="reset-btn" onclick="resetSpeed()">Reset Speed</button>
-    </div>
-    <div>
       <button id="play-btn" onclick="playMusic()">Play</button>
-     <button id="pause-btn" onclick="pauseMusic()">Pause</button>
+      <button id="pause-btn" onclick="pauseMusic()">Pause</button>
       <button id="stop-btn" onclick="stopMusic()">Stop</button>
     </div>
-</body>
+
+    <audio id="bg-music" src="bday-song.mp3" autoplay loop></audio>
+
+    <script>
+      var shinchan = document.querySelector('#shinchan');
+      var speed = 1;
+      var music = document.getElementById('bg-music');
+
+      function speedUp() {
+        speed += 0.5;
+        shinchan.style.animationDuration = `${4/speed}s`;
+      }
+
+      function resetSpeed() {
+        speed = 1;
+        shinchan.style.animationDuration = '4s';
+      }
+
+      function playMusic() {
+        music.play();
+      }
+
+      function pauseMusic() {
+        music.pause();
+      }
+
+      function stopMusic() {
+        music.pause();
+        music.currentTime = 0;
+      }
+    </script>
+  </body>
 </html>
