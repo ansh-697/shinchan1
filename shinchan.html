@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shinchan's Birthday</title>
+  </head>
+  <body>
+    <audio controls autoplay>
+      <source src="bday-song.mp3" type="audio/mpeg" />
+    </audio>
+    <img src="shinchan.gif" class="shinchan" />
+    <style>
+      .shinchan {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        animation: shinchan-movement 2s linear infinite;
+      }
+      @keyframes shinchan-movement {
+        0% {
+          left: 0;
+        }
+        100% {
+          left: 100%;
+        }
+      }
+    </style>
+  </body>
+</html>
