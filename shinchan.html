@@ -3,9 +3,48 @@
   <head>
     <title>Shinchan's Birthday</title>
     <style>
+      body {
+        background: #4a148c;
+        background-image: url("confetti.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        animation: background-animation 10s linear infinite;
+        font-family: 'Roboto', sans-serif;
+        color: #fff;
+      }
+      @keyframes background-animation {
+        0% {
+          background-color: #4a148c;
+          border-radius: 0%;
+        }
+        25% {
+          background-color: #8e24aa;
+          border-radius: 50% 0% 50% 0%;
+        }
+        50% {
+          background-color: #ba68c8;
+          border-radius: 0% 50% 0% 50%;
+        }
+        75% {
+          background-color: #8e24aa;
+          border-radius: 50% 0% 50% 0%;
+        }
+        100% {
+          background-color: #4a148c;
+          border-radius: 0%;
+        }
+      }
+      h1 {
+        font-size: 50px;
+        text-align: center;
+        margin-top: 100px;
+        font-weight: 700;
+        text-shadow: 1px 1px #fff, 2px 2px #777;
+      }
       .shinchan {
         position: absolute;
-        top: 50px;
+        top: 200px;
         left: 0;
         animation: shinchan-movement 4s linear infinite;
       }
@@ -22,63 +61,75 @@
       }
       #speed-up-btn, #reset-btn {
         margin-top: 10px;
+        background-color: #ff6f00;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: 500;
+        box-shadow: 2px 2px #666;
       }
-    </style>
-  </head>
-  <body>
-    <h1>Happy Birthday, Shinchan!</h1>
-    <div>
-      <img src="sing-crayon-shin-chan.gif" class="shinchan" />
-      <button id="speed-up-btn">Speed Up</button>
-      <button id="reset-btn">Reset</button>
+      #speed-up-btn:hover, #reset-btn:hover {
+        background-color: #ff8f00;
+      }
+      #play-btn, #pause-btn, #stop-btn {
+        background-color: #ff6f00;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: 500;
+        box-shadow: 2px 2px #666;
+      }
+      #play-btn:hover, #pause-btn:hover, #stop-btn:hover {
+        background-color: #ff8f00;
+      }
+   
+  var shinchan = document.querySelector('.shinchan');
+  var speed = 1;
+  var music = document.getElementById('bg-music');
+
+  function speedUp() {
+    speed += 0.5;
+    shinchan.style.animationDuration = `${4/speed}s`;
+  }
+
+  function resetSpeed() {
+    speed = 1;
+    shinchan.style.animationDuration = '4s';
+  }
+
+  function playMusic() {
+    music.play();
+  }
+
+  function pauseMusic() {
+    music.pause();
+  }
+
+  function stopMusic() {
+    music.pause();
+    music.currentTime = 0;
+  }
+</script>
+<body>
+    <h1>Happy Birthday Shinchan!</h1>
+    <audio id="bg-music" src="birthday-song.mp3" autoplay loop></audio>
+    <div class="shinchan">
+      <img src="shinchan.gif" alt="Shinchan Image">
     </div>
-    <audio id="bday-song" autoplay>
-      <source src="bday-song.mp3" type="audio/mpeg" />
-    </audio>
     <div>
-      <button id="play-btn">Play</button>
-      <button id="pause-btn">Pause</button>
-      <button id="stop-btn">Stop</button>
+      <button id="speed-up-btn" onclick="speedUp()">Speed Up</button>
+      <button id="reset-btn" onclick="resetSpeed()">Reset Speed</button>
     </div>
-    <script>
-      const shinchan = document.querySelector('.shinchan');
-      const speedUpBtn = document.querySelector('#speed-up-btn');
-      const resetBtn = document.querySelector('#reset-btn');
-      const playBtn = document.querySelector('#play-btn');
-      const pauseBtn = document.querySelector('#pause-btn');
-      const stopBtn = document.querySelector('#stop-btn');
-      const bdaySong = document.querySelector('#bday-song');
-
-      let speed = 1;
-
-      function changeDirection() {
-        if (shinchan.offsetLeft >= window.innerWidth - 100) {
-          shinchan.style.transform = 'scaleX(-1)';
-        } else if (shinchan.offsetLeft <= 0) {
-          shinchan.style.transform = 'scaleX(1)';
-        }
-      }
-
-      function speedUp() {
-        speed += 0.5;
-        shinchan.style.animationDuration = `${4 / speed}s`;
-      }
-
-      function resetSpeed() {
-        speed = 1;
-        shinchan.style.animationDuration = '4s';
-      }
-
-      speedUpBtn.addEventListener('click', speedUp);
-      resetBtn.addEventListener('click', resetSpeed);
-      playBtn.addEventListener('click', () => bdaySong.play());
-      pauseBtn.addEventListener('click', () => bdaySong.pause());
-      stopBtn.addEventListener('click', () => {
-        bdaySong.pause();
-        bdaySong.currentTime = 0;
-      });
-
-      setInterval(changeDirection, 50);
-    </script>
-  </body>
+    <div>
+      <button id="play-btn" onclick="playMusic()">Play</button>
+     <button id="pause-btn" onclick="pauseMusic()">Pause</button>
+      <button id="stop-btn" onclick="stopMusic()">Stop</button>
+    </div>
+</body>
 </html>
